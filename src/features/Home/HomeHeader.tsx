@@ -39,14 +39,19 @@ interface HomeHeaderProps {
 }
 
 const HomeHeader = memo<HomeHeaderProps>(({ centered }) => {
-  const { t } = useTranslation('home');
+  const { t, i18n } = useTranslation('home');
   const displayName = useUserStore(userProfileSelectors.displayUserName);
   const isLogin = useUserStore(authSelectors.isLogin);
 
-  const greetingKey = getGreetingKey(new Date().getHours());
+  const now = new Date();
+  const greetingKey = getGreetingKey(now.getHours());
+  // Localized "today" (e.g. "10月9日"), threaded into the greeting template.
+  const date = new Intl.DateTimeFormat(i18n.language, { day: 'numeric', month: 'long' }).format(
+    now,
+  );
   const greeting = isLogin
-    ? t(`dashboard.greeting.${greetingKey}`, { name: displayName })
-    : t(`dashboard.greeting.${greetingKey}Guest`);
+    ? t(`dashboard.greeting.${greetingKey}`, { date, name: displayName })
+    : t(`dashboard.greeting.${greetingKey}Guest`, { date });
 
   return (
     // Minimal mode keeps the full layout's stacking order — the switcher names
