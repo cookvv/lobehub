@@ -187,6 +187,8 @@ const AppTheme = memo<AppThemeProps>(
           theme={{
             cssVar: { key: 'lobe-vars' },
             token: {
+              colorBgContainer: isDark ? '#241d36' : '#f2ecff',
+              colorBgLayout: isDark ? '#171324' : '#ede9fe',
               fontFamily,
               fontFamilyCode,
               motion: animationMode !== 'disabled',
