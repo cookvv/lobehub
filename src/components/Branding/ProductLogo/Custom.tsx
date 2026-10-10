@@ -70,9 +70,13 @@ const Divider: IconType = (({ ref, size = '1em', style, ...rest }) => (
 )) as IconType;
 
 const CustomLogo = memo<LobeChatProps>(({ extra, size = 32, className, style, type, ...rest }) => {
+  // A white-label build may ship a name but no logo asset. The image variants
+  // would then paint an empty <img>, so they degrade to the text wordmark.
+  const resolvedType = BRANDING_LOGO_URL ? type : 'text';
+
   let logoComponent: ReactNode;
 
-  switch (type) {
+  switch (resolvedType) {
     case '3d':
     case 'flat': {
       logoComponent = <CustomImageLogo size={size} style={style} {...rest} />;
