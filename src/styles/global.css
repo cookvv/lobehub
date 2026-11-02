@@ -126,3 +126,21 @@ button {
     display: none !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+ * Local custom theme: light purple page background.
+ * Overrides the @lobehub/ui theme tokens (loaded before this file).
+ * Light: layout #ede9fe / container #f2ecff. Dark: #171324 / #241d36.
+ * ------------------------------------------------------------------------- */
+:root,
+[data-theme='light'] {
+  --lobe-color-bg-layout: #ede9fe !important;
+  --lobe-color-bg-container: #f2ecff !important;
+  --lobe-color-bg-elevated: #f7f4ff !important;
+}
+
+[data-theme='dark'] {
+  --lobe-color-bg-layout: #171324 !important;
+  --lobe-color-bg-container: #241d36 !important;
+  --lobe-color-bg-elevated: #2b2340 !important;
+}
